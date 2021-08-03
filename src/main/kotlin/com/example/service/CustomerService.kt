@@ -16,12 +16,6 @@ class CustomerService(@Inject var customerRepository: CustomerRepository? = null
         return customerEntity?.asSequence()?.map {customerEntity -> Customer(customerEntity)}?.toList()
     }
 
-    fun getCustomers1(): List<Customer>? {
-        var customer = customerRepository1?.findAll()
-        println("Cutomer1"+ customer)
-        return customer as List<Customer>?
-    }
-
     fun getCustomer(customerId: Long): Customer? {
         val customerEntity = customerRepository?.findByCustomerId(customerId) as CustomerEntity
         return Customer(customerEntity)
