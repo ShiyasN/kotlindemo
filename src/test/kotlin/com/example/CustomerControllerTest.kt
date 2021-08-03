@@ -13,22 +13,17 @@ import io.mockk.mockk
 
 @MicronautTest
 class CustomerControllerTest : ShouldSpec({
-    print("Inside test")
     val customerRepository = mockk<CustomerRepository>()
     val customerRepository1 = mockk<CustomerRepository1>()
-    print("Inside test11")
     val customerService = CustomerService(customerRepository, customerRepository1)
-    print("Inside test222")
     context("get cusrtomers") {
         should("get all customers") {
             val customerList = listOf<Customer> (
                 Customer(1, "test", "test", "test", "test", "test", "test", "test"),
                 Customer(2, "test", "test", "test", "test", "test", "test", "test")
             )
-            print("before ***")
             every { customerRepository1.findAll() }.returns(customerList)
-            print("after ****")
-            customerService.getCustomers1() shouldBe customerList
+            customerService.getCustomers() shouldBe customerList
         }
     }
 })
